@@ -1,0 +1,7 @@
+---
+ssh_port: $ansible_ssh_port
+ssh_root_login: yes
+connection_name: default
+public_ipv4_address: $ansible_ssh_host
+shared_secret: "secrete"
+challange_string: "exampleforchallengestring"

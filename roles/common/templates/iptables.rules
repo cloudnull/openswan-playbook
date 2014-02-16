@@ -1,0 +1,22 @@
+# {{ ansible_managed }}
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [37:13960]
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport {{ ssh_port }} -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 1701 -j ACCEPT
+-A INPUT -p udp -m state --state NEW -m udp --dport 4500 -j ACCEPT
+-A INPUT -p udp -m state --state NEW -m udp --dport 500 -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+COMMIT
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+-A POSTROUTING -j MASQUERADE
+COMMIT

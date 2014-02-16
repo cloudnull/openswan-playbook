@@ -1,0 +1,33 @@
+---
+
+- name: Install iptables Package
+  apt: name=iptables state=latest update_cache=yes
+  notify: restart sshd
+
+- name: Set up iptables rules
+  template: src=iptables.rules dest=/etc/iptables.rules owner=root mode=0600
+  notify: reload iptables
+
+- name: Setup SSH config
+  template: src=sshd_config dest=/etc/ssh/sshd_config owner=root mode=0644
+  notify: restart sshd
+
+- name: Load Iptables Rules on boot
+  template: src=iptables-load.sh dest=/etc/network/if-up.d/iptables-load.sh owner=root mode=0755
+
+- name: set sysctl rule net.ipv4.ip_forward to 1
+  sysctl: name=net.ipv4.ip_forward value=1 state=present
+
+- name: Get a list of all interfaces
+  command:  ls /proc/sys/net/ipv4/conf/
+  register: interface_results
+
+- name: Enable accept_redirects on all interfaces
+  sysctl: name=net.ipv4.conf.{{ item }}.accept_redirects value=0 state=present
+  with_items: interface_results.stdout_lines
+
+- name: set sysctl rule net.ipv4.conf.all.send_redirects to 0
+  sysctl: name=net.ipv4.conf.{{ item }}.send_redirects value=0 state=present
+  with_items: interface_results.stdout_lines
+
+

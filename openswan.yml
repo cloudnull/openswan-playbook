@@ -1,0 +1,9 @@
+---
+# This playbook deploys OpenSwan VPN server. 
+
+- hosts: vpn-servers
+  user: root
+
+  roles:
+    - common
+    - openswan

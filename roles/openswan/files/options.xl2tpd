@@ -1,0 +1,16 @@
+ms-dns 8.8.8.8
+ms-dns 8.8.4.4
+auth
+idle 1800
+mtu 1200
+mru 1000
+lock
+crtscts
+hide-password
+modem
+local
+name l2tpd
+proxyarp
+lcp-echo-interval 30
+lcp-echo-failure 4
+login

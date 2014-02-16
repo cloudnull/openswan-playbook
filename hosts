@@ -1,0 +1,2 @@
+[vpn-servers]
+swan1 ansible_ssh_host=162.242.237.24 ansible_ssh_port=22

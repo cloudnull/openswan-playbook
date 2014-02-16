@@ -1,0 +1,41 @@
+---
+- name: Install openswan
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - openswan
+    - xl2tpd
+    - ppp
+    - lsof
+
+- name: link sh -> bash
+  command: ln -sf /bin/bash /bin/sh
+
+- name: set /etc/ipsec.conf
+  template: src=ipsec.conf dest=/etc/ipsec.conf owner=root
+  notify: restart openswan
+
+- name: set /etc/ipsec.secrets
+  template: src=ipsec.secrets dest=/etc/ipsec.secrets owner=root
+  tags: psk
+  notify: restart openswan
+
+- name: set /etc/xl2tpd/xl2tpd.conf
+  copy: src=xl2tpd.conf dest=/etc/xl2tpd/xl2tpd.conf owner=root
+  notify: restart xl2tpd
+
+- name: set/etc/xl2tpd/l2tp-secrets
+  template: src=l2tp-secrets dest=/etc/xl2tpd/l2tp-secrets owner=root
+  notify: restart xl2tpd
+
+- name: set /etc/ppp/options.xl2tpd
+  copy: src=options.xl2tpd dest=/etc/ppp/options.xl2tpd owner=root
+  notify: restart xl2tpd
+
+- name: set /etc/pam.d/ppp
+  copy: src=pam-ppp dest=/etc/pam.d/ppp owner=root
+
+- name: set /etc/ppp/pap-secrets
+  copy: src=pap-secrets dest=/etc/ppp/pap-secrets owner=root
+  notify: restart xl2tpd
+  notify: restart ppp
+
