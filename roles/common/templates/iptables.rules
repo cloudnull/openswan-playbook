@@ -15,7 +15,7 @@
 -A INPUT -p tcp -m state --state NEW -m tcp --dport {{ ssh_port }} -j ACCEPT
 
 # VPN related ports
--A INPUT -p tcp -m state --state NEW -m udp --dport 1701 -j ACCEPT
+-A INPUT -p udp -m state --state NEW -m udp --dport 1701 -j ACCEPT
 -A INPUT -p udp -m state --state NEW -m udp --dport 4500 -j ACCEPT
 -A INPUT -p udp -m state --state NEW -m udp --dport 500 -j ACCEPT
 
