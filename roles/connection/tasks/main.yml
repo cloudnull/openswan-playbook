@@ -1,0 +1,15 @@
+---
+
+- name: deploy connection config file
+  template: src=connection-template.conf dest=/etc/ipsec.d/{{ connection_name }}.conf owner=root
+  notify: restart openswan
+  notify: restart xl2tpd
+
+- name: Ready Openswan for new Connection
+  command: ipsec auto --add {{ connection_name }}
+
+- name: Initiate new connection
+  command: ipsec whack --name {{ connection_name }} --initiate
+
+- name: Bring up the new connection
+  command: ipsec auto --up {{ connection_name }}

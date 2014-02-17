@@ -2,7 +2,6 @@
 
 - name: Install iptables Package
   apt: name=iptables state=latest update_cache=yes
-  notify: restart sshd
 
 - name: Set up iptables rules
   template: src=iptables.rules dest=/etc/iptables.rules owner=root mode=0600
