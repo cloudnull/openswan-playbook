@@ -1,5 +1,5 @@
 [vpn_servers_west]
-swan-west1 ansible_ssh_host=23.253.49.66 ansible_ssh_port=22
+swan-west1 ansible_ssh_host=192.237.172.78 ansible_ssh_port=22
 
 [vpn_servers_east]
-swan-east1 ansible_ssh_host=23.253.100.134 ansible_ssh_port=22
+swan-east1 ansible_ssh_host=23.253.102.237 ansible_ssh_port=22

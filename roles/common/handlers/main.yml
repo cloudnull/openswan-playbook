@@ -4,4 +4,4 @@
   shell: "/sbin/iptables-restore < /etc/iptables.rules"
 
 - name: restart sshd
-  service: name=sshd state=restarted pattern=sshd
+  service: name=ssh state=restarted pattern=ssh

@@ -2,8 +2,8 @@
 *filter
 :INPUT ACCEPT [0:0]
 :FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
 :LOGNDROP - [0:0]
-:OUTPUT ACCEPT [37:13960]
 
 # Accept PING
 -A INPUT -p icmp -j ACCEPT
@@ -12,7 +12,7 @@
 -A INPUT -i lo -j ACCEPT
 
 # Accept SSH
--A INPUT -p tcp -m state --state NEW -m tcp --dport {{ ssh_port }} -j ACCEPT
+-A INPUT -p tcp -m tcp --dport {{ ssh_port }} -j ACCEPT
 
 # VPN related ports
 -A INPUT -p udp -m state --state NEW -m udp --dport 1701 -j ACCEPT
