@@ -23,7 +23,7 @@ LogLevel INFO
 
 # Authentication:
 LoginGraceTime 120
-PermitRootLogin {{ ssh_port }}
+PermitRootLogin {{ ssh_root_login }}
 StrictModes yes
 RSAAuthentication yes
 PubkeyAuthentication yes
