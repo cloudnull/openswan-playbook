@@ -1,7 +1,7 @@
 ---
 
 - name: reload iptables
-  command: "/sbin/iptables-restore < /etc/iptables.rules"
+  shell: "/sbin/iptables-restore < /etc/iptables.rules"
 
 - name: restart sshd
   service: name=sshd state=restarted pattern=sshd

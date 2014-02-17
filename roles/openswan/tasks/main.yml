@@ -20,7 +20,7 @@
   notify: restart openswan
 
 - name: set /etc/xl2tpd/xl2tpd.conf
-  copy: src=xl2tpd.conf dest=/etc/xl2tpd/xl2tpd.conf owner=root
+  template: src=xl2tpd.conf dest=/etc/xl2tpd/xl2tpd.conf owner=root
   notify: restart xl2tpd
 
 - name: set/etc/xl2tpd/l2tp-secrets
@@ -28,7 +28,7 @@
   notify: restart xl2tpd
 
 - name: set /etc/ppp/options.xl2tpd
-  copy: src=options.xl2tpd dest=/etc/ppp/options.xl2tpd owner=root
+  template: src=options.xl2tpd dest=/etc/ppp/options.xl2tpd owner=root
   notify: restart xl2tpd
 
 - name: set /etc/pam.d/ppp

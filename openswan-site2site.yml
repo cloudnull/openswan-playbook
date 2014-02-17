@@ -5,6 +5,10 @@
   user: root
 
   vars:
+    # Name of the xl2rp gateway
+    xl2tpd_gateway_name: RW_Gateway
+    # Listenting IP address of xl2tpd
+    xl2tpd_listen_addr: $ansible_ssh_host
     # Name of your VPN connection
     connection_name: MY_S2S_VPN
     # IP address of the source host machine
@@ -24,6 +28,10 @@
   user: root
 
   vars:
+    # Name of the xl2rp gateway
+    xl2tpd_gateway_name: RW_Gateway
+    # Listenting IP address of xl2tpd
+    xl2tpd_listen_addr: $ansible_ssh_host
     # Name of your VPN connection
     connection_name: MY_S2S_VPN
     # IP address of the source host machine
