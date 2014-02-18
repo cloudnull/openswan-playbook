@@ -11,6 +11,9 @@
 # Accept all Loopback traffic
 -A INPUT -i lo -j ACCEPT
 
+# allow established connections
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
 # Accept SSH
 -A INPUT -p tcp -m tcp --dport {{ ssh_port }} -j ACCEPT
 

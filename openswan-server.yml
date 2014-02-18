@@ -1,9 +1,13 @@
 ---
-# This playbook deploys OpenSwan VPN server. 
+# This playbook deploys OpenSwan VPN server.
 
-- hosts: vpn-servers
+- hosts: vpn_servers
   user: root
-
+  vars:
+    # Name of the xl2rp gateway
+    xl2tpd_gateway_name: RW_Gateway
+    # Listenting IP address of xl2tpd
+    xl2tpd_listen_addr: $ansible_ssh_host
   roles:
     - common
     - openswan

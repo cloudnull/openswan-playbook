@@ -14,11 +14,11 @@
     # IP address of the source host machine
     left_ip_address: $ansible_ssh_host
     # Comma Seperated list
-    left_private_subnet: 10.51.50.0/24
+    left_private_subnet: 172.24.24.0/24
     # IP address of the target host machine
-    right_ip_address: 23.253.102.237
+    right_ip_address: 162.242.244.242
     # Comma Seperated list
-    right_private_subnet: 172.16.51.0/24
+    right_private_subnet: 10.51.50.0/24
   roles:
     - common
     - openswan
@@ -36,10 +36,10 @@
     connection_name: MY_S2S_VPN
     # IP address of the source host machine
     left_ip_address: $ansible_ssh_host
-    left_private_subnet: 172.16.51.0/24
+    left_private_subnet: 10.51.50.0/24
     # IP address of the target host machine
-    right_ip_address: 192.237.172.78
-    right_private_subnet: 10.51.50.0/24
+    right_ip_address: 166.78.247.126
+    right_private_subnet: 172.24.24.0/24
   roles:
     - common
     - openswan
